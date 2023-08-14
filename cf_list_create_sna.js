@@ -138,6 +138,8 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   }
 });
 
+console.log(`The length of left list 111 ${sna_lists_length}!`);
+
 module.exports = { sna_lists_length };
 //**********************//
 // *** SUB FUNCTION *** //
