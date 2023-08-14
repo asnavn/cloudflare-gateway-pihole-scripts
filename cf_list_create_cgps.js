@@ -16,6 +16,8 @@ if (!process.env.CI) console.log(`List item limit set to ${LIST_ITEM_LIMIT}`);
 
 let whitelist = []; // Define an empty array for the whitelist
 
+onsole.log(`The length of left list ${sna_lists_length}!`);
+
 // Read whitelist.csv and parse
 fs.readFile('whitelist.csv', 'utf8', async (err, data) => {
   if (err) {
