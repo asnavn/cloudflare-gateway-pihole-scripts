@@ -51,7 +51,7 @@ fs.readFile('whitelist.csv', 'utf8', async (err, data) => {
 //*********************//
 
 // Read snalist.csv and parse domains
-fs.readFile('snalist.csv', 'utf8', async (err, data) => {
+const sna_lists_length = fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   if (err) {
     console.error('Error reading snalist.csv:', err);
     return;
@@ -134,6 +134,7 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
       console.error(`Error creating list `, process.env.CI ? "(redacted on CI)" :  `"${sna_listName}": ${error.response.data}`);
     }
   }
+  return sna_domains.length;
 });
 
 //***********************//
@@ -195,7 +196,7 @@ fs.readFile('input.csv', 'utf8', async (err, data) => {
   });
 
   // Trim array to 300,000 domains if it's longer than that
-  const left_LIST_ITEM_LIMIT = LIST_ITEM_LIMIT - sna_domains.length
+  const left_LIST_ITEM_LIMIT = LIST_ITEM_LIMIT - sna_lists_length;
   if (domains.length > left_LIST_ITEM_LIMIT) {
     domains = trimArray(domains, left_LIST_ITEM_LIMIT);
     console.warn(`More than ${left_LIST_ITEM_LIMIT} domains found in input.csv - input has to be trimmed`);
