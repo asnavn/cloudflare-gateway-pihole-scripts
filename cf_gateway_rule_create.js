@@ -31,7 +31,7 @@ async function getZeroTrustLists() {
     // Build the wirefilter expression
     for (const list of filtered_lists) {
         //wirefilter_expression += `dns.fqdn in \$${list.id} or `;
-        wirefilter_expression += `any(dns.domain[*] in ${list.id}) or `;
+        wirefilter_expression += `any(domain in dns.domain for domain in ${list.id}) or `;
         //wirefilter_expression += `dns.domain in \$${list.id} or `;
     }
     // Remove the trailing ' or '
