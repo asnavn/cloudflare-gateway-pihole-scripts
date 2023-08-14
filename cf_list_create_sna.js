@@ -50,8 +50,10 @@ fs.readFile('whitelist.csv', 'utf8', async (err, data) => {
 // *** SNALIST.CSV *** //
 //*********************//
 
+let sna_domains = []; // Define an empty array for the whitelist
+
 // Read snalist.csv and parse domains
-const sna_lists_length = fs.readFile('snalist.csv', 'utf8', async (err, data) => {
+fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   if (err) {
     console.error('Error reading snalist.csv:', err);
     return;
@@ -59,7 +61,7 @@ const sna_lists_length = fs.readFile('snalist.csv', 'utf8', async (err, data) =>
 
   // Convert into array and cleanup snalist
   const domainValidationPattern = /^(?!-)[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/;
-  let sna_domains = data.split('\n').filter(domain => {
+  sna_domains = data.split('\n').filter(domain => {
     // Remove entire lines starting with "127.0.0.1" or "::1", empty lines or comments
     return domain && !domain.startsWith('#') && !domain.startsWith('//') && !domain.startsWith('/*') && !domain.startsWith('*/') && !(domain === '\r');
   }).map(domain => {
@@ -117,6 +119,8 @@ const sna_lists_length = fs.readFile('snalist.csv', 'utf8', async (err, data) =>
   // Separate domains into chunks of 1000 (Cloudflare list cap)
   const sna_chunks = chunkArray(sna_domains, 1000);
 
+  console.log(`The length of left list ))) ${sna_domains.length}!`);
+
   // Create Cloudflare Zero Trust lists
   for (const [index, chunk] of sna_chunks.entries()) {
     const sna_listName = `SNA List - Chunk ${index}`;
@@ -134,8 +138,9 @@ const sna_lists_length = fs.readFile('snalist.csv', 'utf8', async (err, data) =>
       console.error(`Error creating list `, process.env.CI ? "(redacted on CI)" :  `"${sna_listName}": ${error.response.data}`);
     }
   }
-  return sna_domains.length
 });
+
+const sna_lists_length = sna_domains.length;
 
 console.log(`The length of left list 111 ${sna_lists_length}!`);
 
