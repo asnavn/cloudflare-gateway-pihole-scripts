@@ -1,7 +1,7 @@
 require("dotenv").config();
 const fs = require('fs');
 const axios = require('axios');
-const { sna_lists_length } = require('./cf_list_create_sna');
+const {sna_lists_length} = require('./cf_list_create_sna');
 
 const API_TOKEN = process.env.CLOUDFLARE_API_KEY;
 const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
@@ -16,7 +16,7 @@ if (!process.env.CI) console.log(`List item limit set to ${LIST_ITEM_LIMIT}`);
 
 let whitelist = []; // Define an empty array for the whitelist
 
-onsole.log(`The length of left list ${sna_lists_length}!`);
+console.log(`The length of left list ${sna_lists_length}!`);
 
 // Read whitelist.csv and parse
 fs.readFile('whitelist.csv', 'utf8', async (err, data) => {
