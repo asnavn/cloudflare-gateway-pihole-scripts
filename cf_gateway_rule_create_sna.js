@@ -60,6 +60,10 @@ async function getZeroTrustLists() {
             "action": "block",
             "filters": ["dns"],
             "traffic": wirefilter_expression,
+            "rule_settings": {
+    "block_page_enabled": true,
+    "block_reason": "Trang web không lừa đảo, không an toàn!",
+    },
         }
     });
     console.log('Success:', resp.data.success);
