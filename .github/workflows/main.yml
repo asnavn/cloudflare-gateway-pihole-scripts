@@ -42,7 +42,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_LIST_ITEM_LIMIT: ${{ secrets.CLOUDFLARE_LIST_ITEM_LIMIT }}
-secrets.CLOUDFLARE_LIST_ITEM_LIMIT }}
 
       - name: Create new rules and lists CGPS
         run: |
