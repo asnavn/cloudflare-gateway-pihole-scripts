@@ -3,13 +3,14 @@ const fs = require('fs');
 const axios = require('axios');
 const SNA_LENGTH = parseInt(fs.readFileSync('snalength.txt', 'utf8'));
 console.log(SNA_LENGTH);
- const left_LIST_ITEM_LIMIT = LIST_ITEM_LIMIT - SNA_LENGTH;
-  console.log(left_LIST_ITEM_LIMIT);
 
 const API_TOKEN = process.env.CLOUDFLARE_API_KEY;
 const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
 const ACCOUNT_EMAIL = process.env.CLOUDFLARE_ACCOUNT_EMAIL;
 const LIST_ITEM_LIMIT = Number.isSafeInteger(Number(process.env.CLOUDFLARE_LIST_ITEM_LIMIT)) ? Number(process.env.CLOUDFLARE_LIST_ITEM_LIMIT) : 300000;
+
+ const left_LIST_ITEM_LIMIT = LIST_ITEM_LIMIT - SNA_LENGTH;
+  console.log(left_LIST_ITEM_LIMIT);
 
 if (!process.env.CI) console.log(`List item limit set to ${LIST_ITEM_LIMIT}`);
 
