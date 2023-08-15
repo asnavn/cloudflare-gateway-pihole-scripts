@@ -119,7 +119,8 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   // Separate domains into chunks of 1000 (Cloudflare list cap)
   const sna_chunks = chunkArray(sna_domains, 1000);
 
-  process.env.SNA_LENGTH = sna_domains.length;
+fs.writeFileSync('snalength.txt', sna_domains.length);
+
 
   // Create Cloudflare Zero Trust lists
   for (const [index, chunk] of sna_chunks.entries()) {
