@@ -46,8 +46,6 @@ fs.readFile('whitelist.csv', 'utf8', async (err, data) => {
   }  
 });
 
-console.log(`tim thay ${whitelist.length} list.`);
-
 //*********************//
 // *** SNALIST.CSV *** //
 //*********************//
@@ -121,7 +119,7 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   // Separate domains into chunks of 1000 (Cloudflare list cap)
   const sna_chunks = chunkArray(sna_domains, 1000);
 
-  console.log(`The length of left list ))) ${sna_domains.length}!`);
+  process.env.SNA_LENGTH = sna_domains.length;
 
   // Create Cloudflare Zero Trust lists
   for (const [index, chunk] of sna_chunks.entries()) {
@@ -142,11 +140,6 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   }
 });
 
-const sna_lists_length = sna_domains.length;
-
-console.log(`The length of left list 111 ${sna_lists_length}!`);
-
-module.exports = { sna_lists_length };
 //**********************//
 // *** SUB FUNCTION *** //
 //**********************//
