@@ -108,6 +108,7 @@ fs.readFile('input.csv', 'utf8', async (err, data) => {
 
   // Trim array to 300,000 domains if it's longer than that
   const left_LIST_ITEM_LIMIT = LIST_ITEM_LIMIT - SNA_LENGTH;
+  console.log(left_LIST_ITEM_LIMIT);
   if (domains.length > left_LIST_ITEM_LIMIT) {
     domains = trimArray(domains, left_LIST_ITEM_LIMIT);
     console.warn(`More than ${left_LIST_ITEM_LIMIT} domains found in input.csv - input has to be trimmed`);
