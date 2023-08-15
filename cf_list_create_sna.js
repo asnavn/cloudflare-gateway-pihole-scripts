@@ -120,7 +120,7 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   const sna_chunks = chunkArray(sna_domains, 1000);
 
 //fs.writeFileSync('snalength.txt', sna_domains.length);
-await fs.writeFile('snalength.txt', sna_domains.length, 'utf8', (err) => {
+await fs.writeFile('snalength.txt', sna_domains.length.toString(), 'utf8', (err) => {
     if (err) {
       console.error(err);
       return;
