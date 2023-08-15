@@ -1,7 +1,7 @@
 require("dotenv").config();
 const fs = require('fs');
 const axios = require('axios');
-const SNA_LENGTH = parseInt(fs.readFileSync('snalength.txt', 'utf8'));
+const SNA_LENGTH = Math.ceil((parseInt(fs.readFileSync('snalength.txt', 'utf8')) / 1000)) * 1000;
 console.log(SNA_LENGTH);
 
 const API_TOKEN = process.env.CLOUDFLARE_API_KEY;
@@ -112,9 +112,11 @@ fs.readFile('input.csv', 'utf8', async (err, data) => {
   // Trim array to 300,000 domains if it's longer than that
   if (domains.length > left_LIST_ITEM_LIMIT) {
     domains = trimArray(domains, left_LIST_ITEM_LIMIT);
-   console.log(domains.length);
     console.warn(`More than ${left_LIST_ITEM_LIMIT} domains found in snalist.csv - snalist has to be trimmed`);
   }
+
+ 
+   console.log(domains.length);
 
   const listsToCreate = Math.ceil(domains.length / 1000);
 
