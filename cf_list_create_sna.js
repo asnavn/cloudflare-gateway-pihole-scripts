@@ -53,7 +53,7 @@ fs.readFile('whitelist.csv', 'utf8', async (err, data) => {
 //let sna_domains = []; // Define an empty array for the whitelist
 
 // Read snalist.csv and parse domains
-const sna_lists_length = await fs.readFile('snalist.csv', 'utf8', async (err, data) => {
+const sna_lists_length = await new Promise((resolve, reject) => { fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   if (err) {
     console.error('Error reading snalist.csv:', err);
     return;
@@ -138,7 +138,8 @@ const sna_lists_length = await fs.readFile('snalist.csv', 'utf8', async (err, da
       console.error(`Error creating list `, process.env.CI ? "(redacted on CI)" :  `"${sna_listName}": ${error.response.data}`);
     }
   }
-  return sna_domains.length;
+      resolve(sna_domains.length);
+  });
 });
 
 //const sna_lists_length = sna_domains.length;
