@@ -1,7 +1,8 @@
 require("dotenv").config();
 const fs = require('fs');
 const axios = require('axios');
-const SNA_LENGTH = process.env.SNA_LENGTH;
+const SNA_LENGTH = fs.readFileSync('snalength.txt', 'utf8');
+console.log(SNA_LENGTH);
 
 const API_TOKEN = process.env.CLOUDFLARE_API_KEY;
 const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
