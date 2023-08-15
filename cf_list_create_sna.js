@@ -142,7 +142,7 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   }
 });
 
-//const sna_lists_length = sna_domains.length;
+const sna_lists_length = sna_domains.length;
 
 console.log(`The length of left list 111 ${sna_lists_length}!`);
 
