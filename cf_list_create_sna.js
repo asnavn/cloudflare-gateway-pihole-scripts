@@ -50,10 +50,10 @@ fs.readFile('whitelist.csv', 'utf8', async (err, data) => {
 // *** SNALIST.CSV *** //
 //*********************//
 
-let sna_domains = []; // Define an empty array for the whitelist
+//let sna_domains = []; // Define an empty array for the whitelist
 
 // Read snalist.csv and parse domains
-fs.readFile('snalist.csv', 'utf8', async (err, data) => {
+const sna_lists_length = await fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   if (err) {
     console.error('Error reading snalist.csv:', err);
     return;
@@ -95,7 +95,7 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
   }
 
   // Replace domains array with uniqueDomains array
-  sna_domains = uniquesna_Domains;
+  //sna_domains = uniquesna_Domains;
 
   // Remove domains from the domains array that are present in the whitelist array
   sna_domains = sna_domains.filter(domain => {
@@ -138,9 +138,10 @@ fs.readFile('snalist.csv', 'utf8', async (err, data) => {
       console.error(`Error creating list `, process.env.CI ? "(redacted on CI)" :  `"${sna_listName}": ${error.response.data}`);
     }
   }
+  return sna_domains.length;
 });
 
-const sna_lists_length = sna_domains.length;
+//const sna_lists_length = sna_domains.length;
 
 console.log(`The length of left list 111 ${sna_lists_length}!`);
 
