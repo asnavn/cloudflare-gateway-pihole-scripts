@@ -7,7 +7,7 @@ touch whitelist.csv
 
 # declare an array of urls
 urls=(
-https://raw.githubusercontent.com/nextdns/click-tracking-domains/main/domains
+    https://raw.githubusercontent.com/nextdns/click-tracking-domains/main/domains
     https://raw.githubusercontent.com/AdguardTeam/HttpsExclusions/master/exclusions/banks.txt
     https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt
     https://raw.githubusercontent.com/AdguardTeam/HttpsExclusions/master/exclusions/windows.txt
