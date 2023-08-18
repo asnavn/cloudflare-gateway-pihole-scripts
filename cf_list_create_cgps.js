@@ -33,7 +33,7 @@ fs.readFile("whitelist.csv", "utf8", async (err, data) => {
   } else {
     // Convert into array and cleanup whitelist
     const domainValidationPattern =
-      /^(?!-)[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/;
+      /^(?!-)[A-Za-z0-9-]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,11}$/;
     whitelist = data
       .split("\n")
       .filter((domain) => {
@@ -81,7 +81,7 @@ fs.readFile("input.csv", "utf8", async (err, data) => {
 
   // Convert into array and cleanup input
   const domainValidationPattern =
-    /^(?!-)[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/;
+    /^(?!-)[A-Za-z0-9-]+([\-\.]{1}[A-Za-z0-9]+)*\.[A-Za-z]{2,11}$/;
   let domains = data
     .split("\n")
     .filter((domain) => {
@@ -196,7 +196,7 @@ function trimArray(arr, size) {
 
 // Function to check if a domain is valid
 function isValidDomain(domain) {
-  const regex = /^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,6}$/;
+  const regex = /^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,11}$/;
   return regex.test(domain);
 }
 

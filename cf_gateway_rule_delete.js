@@ -22,13 +22,14 @@ async function getZeroTrustRules() {
   return response.data.result;
 }
 
-//******************//
-// *** SNA List *** //
-//******************//
-
 (async () => {
   const rules = await getZeroTrustRules();
-  const [filtered_rule] = rules.filter(
+
+  //******************//
+  // *** SNA List *** //
+  //******************//
+
+  let [filtered_rule] = rules.filter(
     (rule) => rule.name === "SNA Filter Lists"
   );
 
@@ -44,7 +45,7 @@ async function getZeroTrustRules() {
       : `${filtered_rule.name} with ID ${filtered_rule.id}`
   );
 
-  const resp = await axios.request({
+  let resp = await axios.request({
     method: "DELETE",
     url: `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/gateway/rules/${filtered_rule.id}`,
     headers: {
@@ -57,17 +58,12 @@ async function getZeroTrustRules() {
 
   console.log("Success: ", resp.data.success);
   await sleep(350); // Cloudflare API rate limit is 1200 requests per 5 minutes, so we sleep for 350ms to be safe
-})();
 
-//*******************//
-// *** CGPS List *** //
-//*******************//
+  //*******************//
+  // *** CGPS List *** //
+  //*******************//
 
-(async () => {
-  const rules = await getZeroTrustRules();
-  const [filtered_rule] = rules.filter(
-    (rule) => rule.name === "CGPS Filter Lists"
-  );
+  [filtered_rule] = rules.filter((rule) => rule.name === "CGPS Filter Lists");
 
   if (!filtered_rule)
     return console.warn(
@@ -81,7 +77,7 @@ async function getZeroTrustRules() {
       : `${filtered_rule.name} with ID ${filtered_rule.id}`
   );
 
-  const resp = await axios.request({
+  resp = await axios.request({
     method: "DELETE",
     url: `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/gateway/rules/${filtered_rule.id}`,
     headers: {
@@ -95,6 +91,10 @@ async function getZeroTrustRules() {
   console.log("Success: ", resp.data.success);
   await sleep(350); // Cloudflare API rate limit is 1200 requests per 5 minutes, so we sleep for 350ms to be safe
 })();
+
+// (async () => {
+//   const rules = await getZeroTrustRules();
+// })();
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

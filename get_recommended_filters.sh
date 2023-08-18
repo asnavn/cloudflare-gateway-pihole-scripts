@@ -18,8 +18,8 @@ for url in "${urls[@]}"; do
   # download the file with curl and save it as file.txt
   curl -o "$file.txt" "$url"
   # append the file contents to input.csv and add a newline
-  cat "$file.txt" >> input.csv
-  echo "" >> input.csv
+  cat "$file.txt" >>input.csv
+  echo "" >>input.csv
   # remove the file.txt
   rm "$file.txt"
 done
@@ -39,8 +39,8 @@ for url in "${urls2[@]}"; do
   # download the file with curl and save it as file.txt
   curl -o "$snalist.txt" "$url"
   # append the file contents to input.csv and add a newline
-  cat "$snalist.txt" >> snalist.csv
-  echo "" >> snalist.csv
+  cat "$snalist.txt" >>snalist.csv
+  echo "" >>snalist.csv
   # remove the file.txt
   rm "$snalist.txt"
 done
